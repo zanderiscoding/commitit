@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 
-import { program } from 'commander';
+import enquirer from 'enquirer';
 import chalk from 'chalk';
-import { prompt } from 'enquirer';
 import { setApiKey } from './config.js';
 import { generateCommitMessage } from './ai.js';
 import { getGitDiff, createCommit } from './git.js';
+import { Command } from 'commander';
+const program = new Command();
+const { prompt } = enquirer;
 
 program
   .name('git-snark')
