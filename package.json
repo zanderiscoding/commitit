@@ -1,0 +1,24 @@
+{
+  "name": "git-snark",
+  "version": "1.0.0",
+  "description": "A CLI tool that generates snarky commit messages using AI",
+  "main": "src/index.js",
+  "bin": {
+    "git-snark": "./src/index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["git", "commit", "ai", "cli"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "simple-git": "^3.22.0",
+    "conf": "^12.0.0",
+    "chalk": "^5.3.0",
+    "openai": "^4.28.0",
+    "enquirer": "^2.4.1"
+  }
+} 
