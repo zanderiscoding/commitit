@@ -78,44 +78,53 @@ program
 ${chalk.bold('git-snark')} - Generate snarky commit messages using AI
 
 ${chalk.bold('USAGE')}
-  $ git-snark                  Generate a commit message for staged changes
-  $ git-snark set-key         Set your OpenAI API key
-  $ git-snark unset-key       Remove your OpenAI API key
-  $ git-snark set-model MODEL Set the OpenAI model to use
-  $ git-snark show-model      Show the current OpenAI model
-  $ git-snark set-prompt      Edit the AI prompt in your default editor
-  $ git-snark show-prompt     Show the current AI prompt
-  $ git-snark reset-prompt    Reset the AI prompt to default
-  $ git-snark help            Show this help message
+  $ git-snark                           Generate a commit message for staged changes
+  $ git-snark set-key                   Set your OpenAI API key (interactive)
+  $ git-snark set-key <key>             Set your OpenAI API key directly
+  $ git-snark unset-key                 Remove your OpenAI API key
+  $ git-snark set-model <model>         Set the OpenAI model to use
+  $ git-snark show-model                Show the current OpenAI model
+  $ git-snark edit-prompt               Edit the AI prompt
+  $ git-snark show-prompt               Show the current AI prompt
+  $ git-snark reset-prompt              Reset the AI prompt to default
+  $ git-snark help                      Show this help message
 
 ${chalk.bold('EXAMPLES')}
-  $ git-snark                              # Generate a message for staged changes
-  $ git-snark set-key                      # Set your OpenAI API key
-  $ git-snark set-model gpt-4o             # Use GPT-4o model
-  $ git-snark set-model gpt-3.5-turbo      # Use GPT-3.5 Turbo model
-  $ git-snark set-prompt                   # Edit the AI prompt
+  $ git-snark                           Generate a message for staged changes
+  $ git-snark set-key                   Set your OpenAI API key interactively
+  $ git-snark set-key <key>             Set your OpenAI API key directly
+  $ git-snark set-model gpt-4o          Use GPT-4o model
+  $ git-snark set-model gpt-3.5-turbo   Use GPT-3.5 Turbo model
+  $ git-snark edit-prompt               Edit the AI prompt
 
 ${chalk.bold('WORKFLOW')}
-  1. Set your OpenAI API key:     git-snark set-key
-  2. (Optional) Set model:        git-snark set-model gpt-4o
-  3. (Optional) Edit prompt:      git-snark set-prompt
-  4. Stage some changes:          git add .
-  5. Generate commit message:     git-snark
+  1. Set your OpenAI API key:           git-snark set-key
+  2. (Optional) Set model:              git-snark set-model gpt-4o
+  3. (Optional) Edit prompt:            git-snark edit-prompt
+  4. Stage some changes:                git add .
+  5. Generate commit message:           git-snark
 `);
   });
 
 program
-  .command('set-key')
-  .description('Set your OpenAI API key')
-  .action(async () => {
-    const response = await prompt({
-      type: 'password',
-      name: 'apiKey',
-      message: 'Enter your OpenAI API key:'
-    });
-    
-    await setApiKey(response.apiKey);
-    console.log(chalk.green('✓ API key saved'));
+  .command('set-key [key]')
+  .description('Set your OpenAI API key (interactive or direct)')
+  .action(async (key) => {
+    if (key) {
+      // Direct key input
+      await setApiKey(key);
+      console.log(chalk.green('✓ API key saved'));
+    } else {
+      // Interactive prompt
+      const response = await prompt({
+        type: 'password',
+        name: 'apiKey',
+        message: 'Enter your OpenAI API key:'
+      });
+      
+      await setApiKey(response.apiKey);
+      console.log(chalk.green('✓ API key saved'));
+    }
   });
 
 program
@@ -143,8 +152,8 @@ program
   });
 
 program
-  .command('set-prompt')
-  .description('Set the AI prompt')
+  .command('edit-prompt')
+  .description('Edit the AI prompt')
   .action(async () => {
     const { newPrompt } = await prompt({
       type: 'input',
