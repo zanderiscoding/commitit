@@ -1,8 +1,12 @@
 {
   "name": "git-snark",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CLI tool that generates snarky commit messages using AI",
   "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zanderiscoding/git-snark"
+  },
   "bin": {
     "git-snark": "./src/index.js"
   },
