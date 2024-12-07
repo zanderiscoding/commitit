@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --no-deprecation
 
 import enquirer from 'enquirer';
 import chalk from 'chalk';
