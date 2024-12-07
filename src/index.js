@@ -144,12 +144,12 @@ program
 
 program
   .command('set-prompt')
-  .description('Edit the AI prompt in your default editor')
+  .description('Set the AI prompt')
   .action(async () => {
     const { newPrompt } = await prompt({
-      type: 'editor',
+      type: 'input',
       name: 'newPrompt',
-      message: 'Edit the AI prompt:',
+      message: 'Enter new prompt:',
       initial: getPrompt()
     });
     
