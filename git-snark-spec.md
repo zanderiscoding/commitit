@@ -1,3 +1,5 @@
+## just a file i had claude generate to give context to cursor
+
 # git-snark - Project Specification
 
 ## Overview
