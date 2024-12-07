@@ -24,3 +24,4 @@ export async function generateCommitMessage(diff) {
 
   return response.choices[0].message.content.trim();
 } 
+
