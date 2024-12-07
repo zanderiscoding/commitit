@@ -1,5 +1,7 @@
 # git-snark 🤖✍️
 
+[![npm version](https://badge.fury.io/js/git-snark.svg)](https://www.npmjs.com/package/git-snark)
+
 A CLI tool that generates snarky, humorous commit messages from your staged changes using AI. Because let's face it, writing commit messages is hard, and a little humor makes code reviews better.
 
 > Fun fact: All commit messages in this repository were generated using git-snark itself. Yes, we eat our own dog food! 🐕
