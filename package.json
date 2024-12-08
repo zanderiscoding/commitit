@@ -1,6 +1,6 @@
 {
   "name": "git-snark",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A CLI tool that generates snarky commit messages using AI",
   "main": "src/index.js",
   "repository": {
