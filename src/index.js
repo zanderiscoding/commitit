@@ -6,8 +6,35 @@ import { setApiKey, unsetApiKey, setModel, getModel, getPrompt, setPrompt, reset
 import { generateCommitMessage } from './ai.js';
 import { getGitDiff, createCommit } from './git.js';
 import { Command } from 'commander';
+import { execSync } from 'child_process';
+import { writeFileSync, readFileSync, unlinkSync } from 'fs';
+import { tmpdir } from 'os';
+import { join } from 'path';
+
 const program = new Command();
 const { prompt } = enquirer;
+
+function readMultilineInput() {
+  return new Promise((resolve) => {
+    console.log(chalk.blue('Enter/paste your prompt. Press Ctrl+D (Unix) or Ctrl+Z (Windows) then Enter when done:'));
+    console.log();
+    
+    let input = '';
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+      terminal: false
+    });
+
+    rl.on('line', (line) => {
+      input += line + '\n';
+    });
+
+    rl.on('close', () => {
+      resolve(input.trim());
+    });
+  });
+}
 
 // Move the main commit message generation logic to a separate function
 async function generateAndHandleCommitMessage() {
@@ -155,15 +182,41 @@ program
   .command('edit-prompt')
   .description('Edit the AI prompt')
   .action(async () => {
-    const { newPrompt } = await prompt({
-      type: 'input',
-      name: 'newPrompt',
-      message: 'Enter new prompt:',
-      initial: getPrompt()
-    });
-    
-    setPrompt(newPrompt.trim());
-    console.log(chalk.green('✓ Prompt updated'));
+    try {
+      // Create a temporary file with current prompt
+      const tmpFile = join(tmpdir(), `git-snark-prompt-${Date.now()}.txt`);
+      writeFileSync(tmpFile, getPrompt(), 'utf8');
+
+      console.log(chalk.blue('\nCurrent prompt has been written to:'));
+      console.log(chalk.bold(tmpFile));
+      console.log(chalk.blue('\nEdit this file in your preferred editor, then return here.'));
+      
+      const { confirm } = await prompt({
+        type: 'confirm',
+        name: 'confirm',
+        message: 'Have you finished editing the prompt?'
+      });
+
+      if (confirm) {
+        // Read the edited content
+        const newPrompt = readFileSync(tmpFile, 'utf8');
+        
+        if (newPrompt && newPrompt.trim()) {
+          setPrompt(newPrompt.trim());
+          console.log(chalk.green('✓ Prompt updated'));
+        } else {
+          console.log(chalk.yellow('Prompt was empty, keeping previous prompt'));
+        }
+      } else {
+        console.log(chalk.yellow('Prompt update cancelled'));
+      }
+
+      // Clean up
+      unlinkSync(tmpFile);
+      
+    } catch (error) {
+      console.error(chalk.red('Error updating prompt:', error.message));
+    }
   });
 
 program
