@@ -1,6 +1,6 @@
 # commitit 🤖✍️
 
-[![npm version](https://badge.fury.io/js/commitit.svg)](https://www.npmjs.com/package/commitit)
+[![npm version](https://badge.fury.io/js/@zanderiscoding%2Fcommitit.svg)](https://www.npmjs.com/package/@zanderiscoding/commitit)
 
 A CLI tool that generates high-quality, descriptive commit messages from your staged changes using AI. Born from its snarky sibling git-snark, commitit focuses on clear, professional communication that makes your git history more meaningful.
 
