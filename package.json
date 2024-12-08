@@ -1,20 +1,19 @@
 {
-  "name": "git-snark",
+  "name": "commitit",
   "version": "1.0.2",
-  "description": "A CLI tool that generates snarky commit messages using AI",
+  "description": "A CLI tool that generates quality commit messages using AI",
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zanderiscoding/git-snark"
+    "url": "https://github.com/zanderiscoding/commitit"
   },
   "bin": {
-    "git-snark": "./src/index.js"
+    "commitit": "./src/index.js"
   },
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "snark": "node --no-deprecation src/index.js",
-    "git-snark": "node --no-deprecation src/index.js"
+    "commitit": "node --no-deprecation src/index.js"
   },
   "keywords": [
     "git",

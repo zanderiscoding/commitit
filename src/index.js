@@ -39,7 +39,7 @@ function readMultilineInput() {
 // Move the main commit message generation logic to a separate function
 async function generateAndHandleCommitMessage() {
   try {
-    console.log(chalk.blue('📝 Analyzing your questionable code decisions...'));
+    console.log(chalk.blue('📝 Analyzing your diff...'));
     
     const diff = await getGitDiff();
     if (!diff) {
@@ -64,7 +64,7 @@ async function generateAndHandleCommitMessage() {
     switch (action) {
       case 'Commit now with this message':
         await createCommit(message);
-        console.log(chalk.green('✓ Commit created... snarkily!'));
+        console.log(chalk.green('✓ Commit created!'));
         break;
       
       case 'Edit message':
@@ -93,8 +93,8 @@ async function generateAndHandleCommitMessage() {
 }
 
 program
-  .name('git-snark')
-  .description('Generate snarky commit messages from your staged changes')
+  .name('commitit')
+  .description('Generate quality commit messages from your staged changes')
   .version('1.0.0');
 
 program
@@ -102,34 +102,34 @@ program
   .description('Show help for all commands')
   .action(() => {
     console.log(`
-${chalk.bold('git-snark')} - Generate snarky commit messages using AI
+${chalk.bold('commitit')} - Generate quality commit messages using AI
 
 ${chalk.bold('USAGE')}
-  $ git-snark                           Generate a commit message for staged changes
-  $ git-snark set-key                   Set your OpenAI API key (interactive)
-  $ git-snark set-key <key>             Set your OpenAI API key directly
-  $ git-snark unset-key                 Remove your OpenAI API key
-  $ git-snark set-model <model>         Set the OpenAI model to use
-  $ git-snark show-model                Show the current OpenAI model
-  $ git-snark edit-prompt               Edit the AI prompt
-  $ git-snark show-prompt               Show the current AI prompt
-  $ git-snark reset-prompt              Reset the AI prompt to default
-  $ git-snark help                      Show this help message
+  $ commitit                           Generate a commit message for staged changes
+  $ commitit set-key                   Set your OpenAI API key (interactive)
+  $ commitit set-key <key>             Set your OpenAI API key directly
+  $ commitit unset-key                 Remove your OpenAI API key
+  $ commitit set-model <model>         Set the OpenAI model to use
+  $ commitit show-model                Show the current OpenAI model
+  $ commitit edit-prompt               Edit the AI prompt
+  $ commitit show-prompt               Show the current AI prompt
+  $ commitit reset-prompt              Reset the AI prompt to default
+  $ commitit help                      Show this help message
 
 ${chalk.bold('EXAMPLES')}
-  $ git-snark                           Generate a message for staged changes
-  $ git-snark set-key                   Set your OpenAI API key interactively
-  $ git-snark set-key <key>             Set your OpenAI API key directly
-  $ git-snark set-model gpt-4o          Use GPT-4o model
-  $ git-snark set-model gpt-3.5-turbo   Use GPT-3.5 Turbo model
-  $ git-snark edit-prompt               Edit the AI prompt
+  $ commitit                           Generate a message for staged changes
+  $ commitit set-key                   Set your OpenAI API key interactively
+  $ commitit set-key <key>             Set your OpenAI API key directly
+  $ commitit set-model gpt-4o          Use GPT-4o model
+  $ commitit set-model gpt-3.5-turbo   Use GPT-3.5 Turbo model
+  $ commitit edit-prompt               Edit the AI prompt
 
 ${chalk.bold('WORKFLOW')}
-  1. Set your OpenAI API key:           git-snark set-key
-  2. (Optional) Set model:              git-snark set-model gpt-4o
-  3. (Optional) Edit prompt:            git-snark edit-prompt
+  1. Set your OpenAI API key:           commitit set-key
+  2. (Optional) Set model:              commitit set-model gpt-4o
+  3. (Optional) Edit prompt:            commitit edit-prompt
   4. Stage some changes:                git add .
-  5. Generate commit message:           git-snark
+  5. Generate commit message:           commitit
 `);
   });
 
@@ -184,7 +184,7 @@ program
   .action(async () => {
     try {
       // Create a temporary file with current prompt
-      const tmpFile = join(tmpdir(), `git-snark-prompt-${Date.now()}.txt`);
+      const tmpFile = join(tmpdir(), `commitit-prompt-${Date.now()}.txt`);
       writeFileSync(tmpFile, getPrompt(), 'utf8');
 
       console.log(chalk.blue('\nCurrent prompt has been written to:'));

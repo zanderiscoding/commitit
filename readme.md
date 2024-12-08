@@ -1,15 +1,15 @@
-# git-snark 🤖✍️
+# commitit 🤖✍️
 
-[![npm version](https://badge.fury.io/js/git-snark.svg)](https://www.npmjs.com/package/git-snark)
+[![npm version](https://badge.fury.io/js/commitit.svg)](https://www.npmjs.com/package/commitit)
 
-A CLI tool that generates snarky, humorous commit messages from your staged changes using AI. Because let's face it, writing commit messages is hard, and a little humor makes code reviews better.
+A CLI tool that generates high-quality, descriptive commit messages from your staged changes using AI. Born from its snarky sibling git-snark, commitit focuses on clear, professional communication that makes your git history more meaningful.
 
-> Fun fact: All commit messages in this repository were generated using git-snark itself. Yes, we eat our own dog food! 🐕
+> Fun fact: This tool started as git-snark, a joke project for generating snarky commit messages. Turns out AI-generated commit messages were so helpful that this serious version was created! Sometimes the best tools come from unexpected places. 🚀
 
 ## Features
 
 - 🤖 Uses OpenAI's GPT models to analyze your changes
-- 😏 Generates witty, self-aware commit messages
+- 📝 Generates clear, descriptive commit messages
 - 🎯 Follows conventional commit format
 - ✨ Interactive CLI with multiple options
 - 🔧 Configurable AI model and prompt
@@ -22,15 +22,15 @@ A CLI tool that generates snarky, humorous commit messages from your staged chan
 
 ```bash
 # Install globally from npm
-npm install -g git-snark
+npm install -g commitit
 ```
 
 ### Build from source
 
 ```bash
 # Clone the repository
-git clone https://github.com/zanderiscoding/git-snark
-cd git-snark
+git clone https://github.com/zanderiscoding/commitit
+cd commitit
 
 # Install dependencies
 npm install
@@ -44,7 +44,7 @@ npm link
 1. Get an OpenAI API key from [OpenAI's platform](https://platform.openai.com/api-keys)
 2. Set your API key:
 ```bash
-git-snark set-key <key>
+commitit set-key <key>
 ```
 
 ## Usage
@@ -56,7 +56,7 @@ git add .
 
 2. Generate a commit message:
 ```bash
-git-snark
+commitit
 ```
 
 3. Choose what to do with the generated message:
@@ -68,15 +68,15 @@ git-snark
 ## Commands
 
 ```bash
-git-snark                   # Generate a commit message for staged changes
-git-snark set-key           # Set your OpenAI API key
-git-snark unset-key         # Remove your OpenAI API key
-git-snark set-model <model> # Set the OpenAI model to use (gpt-4o by default)
-git-snark show-model        # Show the current OpenAI model
-git-snark edit-prompt       # Edit the AI prompt in the terminal
-git-snark show-prompt       # Show the current AI prompt
-git-snark reset-prompt      # Reset the AI prompt to default
-git-snark help              # Show help message
+commitit                   # Generate a commit message for staged changes
+commitit set-key           # Set your OpenAI API key
+commitit unset-key         # Remove your OpenAI API key
+commitit set-model <model> # Set the OpenAI model to use (gpt-4o by default)
+commitit show-model        # Show the current OpenAI model
+commitit edit-prompt       # Edit the AI prompt in the terminal
+commitit show-prompt       # Show the current AI prompt
+commitit reset-prompt      # Reset the AI prompt to default
+commitit help              # Show help message
 ```
 
 ## Configuration
@@ -84,25 +84,25 @@ git-snark help              # Show help message
 ### Models
 Choose your preferred OpenAI model:
 ```bash
-git-snark set-model gpt-4              # More creative, potentially funnier (default)
-git-snark set-model gpt-4o-mini        # Fastest, cheapest
-git-snark set-model <model>            # Any other model
+commitit set-model gpt-4o             # More detailed, context-aware (default)
+commitit set-model gpt-4o-mini        # Faster, cheaper
+commitit set-model <model>            # Any other model
 ```
 
 ### Custom Prompts
-Customize the AI's personality:
+Customize the AI's output style:
 ```bash
-git-snark edit-prompt     # Edit the prompt in the terminal
-git-snark show-prompt     # View current prompt
-git-snark reset-prompt    # Reset to default
+commitit edit-prompt     # Edit the prompt in the terminal
+commitit show-prompt     # View current prompt
+commitit reset-prompt    # Reset to default
 ```
 
-## Snarky Examples
+## Example Messages
 
-- "fix(auth): Removed console.logs because apparently customers can see those"
-- "refactor(css): Replaced !important with actual specificity because I'm growing as a person"
-- "feat(api): Added proper error handling instead of just hoping for the best"
-- "chore(deps): Updated dependencies and sacrificed a goat to npm"
+- "feat(auth): Implement JWT-based authentication with refresh token support"
+- "refactor(css): Improve stylesheet organization with BEM methodology"
+- "fix(api): Handle edge cases in user validation middleware"
+- "chore(deps): Update dependencies to address security vulnerabilities"
 
 ## Requirements
 
@@ -116,7 +116,6 @@ Contributions are welcome! Feel free to:
 - Report bugs
 - Suggest features
 - Submit pull requests
-- Add more snark
 
 ## License
 
