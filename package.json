@@ -1,6 +1,6 @@
 {
   "name": "commitit",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "A CLI tool that generates quality commit messages using AI",
   "main": "src/index.js",
   "repository": {
