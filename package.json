@@ -1,14 +1,14 @@
 {
-  "name": "commitit",
+  "name": "@zanderiscoding/commitit",
   "version": "1.0.0",
   "description": "A CLI tool that generates quality commit messages using AI",
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zanderiscoding/commitit"
+    "url": "git+https://github.com/zanderiscoding/commitit.git"
   },
   "bin": {
-    "commitit": "./src/index.js"
+    "commitit": "src/index.js"
   },
   "type": "module",
   "scripts": {
@@ -21,7 +21,7 @@
     "ai",
     "cli"
   ],
-  "author": "",
+  "author": "zanderiscoding",
   "license": "MIT",
   "dependencies": {
     "chalk": "^5.3.0",
@@ -30,5 +30,10 @@
     "enquirer": "^2.4.1",
     "openai": "^4.28.0",
     "simple-git": "^3.22.0"
-  }
+  },
+  "devDependencies": {},
+  "bugs": {
+    "url": "https://github.com/zanderiscoding/commitit/issues"
+  },
+  "homepage": "https://github.com/zanderiscoding/commitit#readme"
 }
